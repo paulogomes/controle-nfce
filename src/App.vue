@@ -8,16 +8,16 @@
         </div>
       </v-row>
       <v-row no-gutters class="mb-12" justify="end">
-        <v-col md="8">
+        <!-- <v-col md="8">
           <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details ></v-text-field>
-        </v-col>
+        </v-col> -->
         <v-col md="2" justify="end">
           <v-btn elevation="2" color="primary" @click="exportData">Export</v-btn>
         </v-col>
       </v-row>
       <v-row justify="center">
         <v-col md="12">
-          <v-data-table :headers="headers" :items="itens" :search="search" ></v-data-table>  
+          <v-data-table :headers="headers" :items="itens" ></v-data-table>  <!-- :search="search" -->
         </v-col>
       </v-row>
     </v-container>
@@ -36,7 +36,7 @@ export default {
   components: { QrcodeStream },
 
   data: () => ({
-    search: '',
+    // search: '',
     headers: [
       { text: 'Desc Item', value: 'nome', },
       { text: 'Quantidade', value: 'quantidade' },
@@ -78,12 +78,12 @@ export default {
     exportData() {
 
       const csvExporter = new ExportToCsv({
-        fieldSeparator: ';',
+        fieldSeparator: ',',
         quoteStrings: '"',
-        decimalSeparator: ',',
+        decimalSeparator: '.',
         showLabels: true,
         useTextFile: false,
-        useBom: true,
+        useBom: false,
         useKeysAsHeaders: true
       });
 
